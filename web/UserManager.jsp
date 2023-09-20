@@ -34,13 +34,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script>
-     window.addEventListener('DOMContentLoaded', function() {
-            var table = document.getElementById('your-table-id'); // Replace 'your-table-id' with the actual ID of your table
-            var rowCount = table.rows.length;
-            document.getElementById('row-count').textContent = "Number of rows: " + rowCount;
-        });
-</script>
 <style>
 body {
     color: #566787;
@@ -281,6 +274,7 @@ table.table .avatar {
                    
                 </div>
             </div>
+            
             <table class="table table-striped table-hover" id="us">
                 <thead>
                     <tr>
@@ -296,7 +290,7 @@ table.table .avatar {
                     <c:forEach items="${requestScope.users}" var="u">
                     <tr>
                         <td>${u.uid}</td>
-                        <td><a href="#"><img src="img/thumbnail_06.jpg" class="avatar" alt="Avatar" style="width: 20px;height: 20px;"> ${u.fname}</a></td>
+                        <td><a href="ud?id=${u.uid}"><img src="img/thumbnail_06.jpg" class="avatar" alt="Avatar" style="width: 20px;height: 20px;"> ${u.fname}</a></td>
                         <td>${u.date}</td>                        
                         <td>${u.bal}</td>
                         <td><span class="status text-success">&bull;</span> Active</td>
@@ -308,7 +302,7 @@ table.table .avatar {
                 </tbody>
             </table>
             <div class="clearfix">
-                <div class="hint-text" id="row-count"> out of <b>${requestScope.entry}</b> entries</div>
+                <div class="hint-text" id="row-count"> Showing <b id="total">{}</b> out of <b>${requestScope.entry}</b> entries</div>
                 <ul class="pagination">
                     <li class="page-item disabled"><a href="Umng?in=1">First</a></li>
                    <c:forEach begin="1" end="${requestScope.page}"  var="i">
@@ -321,6 +315,16 @@ table.table .avatar {
     </div>
 </div>     
 </body>
+<script>
+        function countRows() {
+            var table = document.getElementById("us");
+            var rowCount = table.rows.length;
+           document.getElementById('total').innerHTML = rowCount-1;
+        }
+
+        window.addEventListener("load", countRows);
+    </script>
+
 	<!-- NEWSLETTER -->
 		<div id="newsletter" class="section">
 			<!-- container -->

@@ -53,4 +53,19 @@ public class DAO extends DBContext {
         }
         return 0;
     }
+    public User getU(String id){
+        try {
+            String com="Select * from users where user_id="+id;
+            PreparedStatement st=connection.prepareStatement(com);
+            ResultSet rs=st.executeQuery();
+            while(rs.next()){
+                User u=new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getDouble(9));
+                return u;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }
