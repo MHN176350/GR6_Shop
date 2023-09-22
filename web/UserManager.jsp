@@ -239,7 +239,7 @@ table.table .avatar {
 					<div class="col-md-12">
 						<h3 class="breadcrumb-header">Regular Page</h3>
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
+							<li><a href="index.jsp  ">Home</a></li>
 							<li class="active">Blank</li>
 						</ul>
 					</div>
@@ -290,7 +290,7 @@ table.table .avatar {
                     <c:forEach items="${requestScope.users}" var="u">
                     <tr>
                         <td>${u.uid}</td>
-                        <td><a href="ud?id=${u.uid}"><img src="img/thumbnail_06.jpg" class="avatar" alt="Avatar" style="width: 20px;height: 20px;"> ${u.fname}</a></td>
+                        <td><a href="ud?id=${u.uid}"><img src="${u.ava}" class="avatar" alt="Avatar" style="width: 20px;height: 20px;"> ${u.fname}</a></td>
                         <td>${u.date}</td>                        
                         <td>${u.bal}</td>
                         <td><span class="status text-success">&bull;</span> Active</td>

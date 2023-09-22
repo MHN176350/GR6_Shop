@@ -89,14 +89,34 @@
 				</div>
 			</div>
 			<!-- /TOP HEADER -->
+                                                         
 
 			
 		</header>
+                                       <!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Regular Page</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="Umng">Home</a></li>
+							<li class="active">Blank</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
 		<!-- /HEADER -->
+                <c:set value="${requestScope.us}" var="u"/>
                 <div class="user-details" style="margin-top: 70px">
-        <div><img class="avatar" src="img/thumbnail_06.jpg" alt=""></div>
+        <div><img class="avatar" src="${u.ava}" alt=""></div>
         <div class="user-info">
-            <c:set value="${requestScope.us}" var="u"/>
+            
             <h1 style="color: red">User Details</h1>
             <p>
                 <span class="label">First Name: </span>

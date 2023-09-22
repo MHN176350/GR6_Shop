@@ -18,11 +18,13 @@ public class User {
     public String address;
     public String date;
     public double bal;
+    public int isAdmin;
+    public String ava;
 
     public User() {
     }
 
-    public User(int uid, String fname, String lname, String email, String pass, String phone, String address, String date, double bal) {
+    public User(int uid, String fname, String lname, String email, String pass, String phone, String address, String date, double bal, int isAdmin, String ava) {
         this.uid = uid;
         this.fname = fname;
         this.lname = lname;
@@ -32,6 +34,8 @@ public class User {
         this.address = address;
         this.date = date;
         this.bal = bal;
+        this.isAdmin = isAdmin;
+        this.ava = ava;
     }
 
     public int getUid() {
@@ -106,8 +110,25 @@ public class User {
         this.bal = bal;
     }
 
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public String getAva() {
+        return ava;
+    }
+
+    public void setAva(String ava) {
+        this.ava = ava;
+    }
+
     @Override
     public String toString() {
-        return "User{" + "uid=" + uid + ", fname=" + fname + ", lname=" + lname + ", email=" + email + ", pass=" + pass + ", phone=" + phone + ", address=" + address + ", date=" + date + ", bal=" + bal + '}';
+        return super.toString(); 
     }
 }
+   
