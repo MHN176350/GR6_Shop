@@ -102,8 +102,9 @@
 					<div class="col-md-12">
 						<h3 class="breadcrumb-header">Regular Page</h3>
 						<ul class="breadcrumb-tree">
-							<li><a href="Umng">Home</a></li>
-							<li class="active">Blank</li>
+							<li><a href="index.jsp">Home</a></li>
+                                                                                                                              <li><a href="Umng">User Manager</a></li>
+							<li class="active">User Detail</li>
 						</ul>
 					</div>
 				</div>

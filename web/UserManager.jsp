@@ -240,7 +240,7 @@ table.table .avatar {
 						<h3 class="breadcrumb-header">Regular Page</h3>
 						<ul class="breadcrumb-tree">
 							<li><a href="index.jsp  ">Home</a></li>
-							<li class="active">Blank</li>
+							<li class="active">User Manager</li>
 						</ul>
 					</div>
 				</div>
@@ -293,7 +293,7 @@ table.table .avatar {
                         <td><a href="ud?id=${u.uid}"><img src="${u.ava}" class="avatar" alt="Avatar" style="width: 20px;height: 20px;"> ${u.fname}</a></td>
                         <td>${u.date}</td>                        
                         <td>${u.bal}</td>
-                        <td><span class="status text-success">&bull;</span> Active</td>
+                        <td><c:if test="${u.status==1}"><span class="status text-success">&bull;</span> Active</td></c:if><c:if test="${u.status!=1}"><span class="status alert-warning">&bull;</span> Suspended</td></c:if>
                         <td>
                             <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
                             <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
@@ -304,7 +304,7 @@ table.table .avatar {
             <div class="clearfix">
                 <div class="hint-text" id="row-count"> Showing <b id="total">{}</b> out of <b>${requestScope.entry}</b> entries</div>
                 <ul class="pagination">
-                    <li class="page-item disabled"><a href="Umng?in=1">First</a></li>
+                    <li class="page-item"><a href="Umng?in=1">First</a></li>
                    <c:forEach begin="1" end="${requestScope.page}"  var="i">
                             <li><a href="Umng?in=${i}">${i}</a></li>
                         </c:forEach>                 

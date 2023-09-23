@@ -20,11 +20,11 @@ public class User {
     public double bal;
     public int isAdmin;
     public String ava;
-
+ public int status;
     public User() {
     }
 
-    public User(int uid, String fname, String lname, String email, String pass, String phone, String address, String date, double bal, int isAdmin, String ava) {
+    public User(int uid, String fname, String lname, String email, String pass, String phone, String address, String date, double bal, int isAdmin, String ava, int status) {
         this.uid = uid;
         this.fname = fname;
         this.lname = lname;
@@ -36,6 +36,7 @@ public class User {
         this.bal = bal;
         this.isAdmin = isAdmin;
         this.ava = ava;
+        this.status = status;
     }
 
     public int getUid() {
@@ -126,9 +127,19 @@ public class User {
         this.ava = ava;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return super.toString(); 
+        return "User{" + "uid=" + uid + ", fname=" + fname + ", lname=" + lname + ", email=" + email + ", pass=" + pass + ", phone=" + phone + ", address=" + address + ", date=" + date + ", bal=" + bal + ", isAdmin=" + isAdmin + ", ava=" + ava + ", status=" + status + '}';
     }
+
+    
 }
    
