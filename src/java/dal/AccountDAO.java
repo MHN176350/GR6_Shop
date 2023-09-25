@@ -18,7 +18,7 @@ public class AccountDAO extends DBContext {
     public Account login(String email, String password) {
 
         try {
-            String query = "SELECT * FROM users WHERE email=? AND password=?";
+            String query = "SELECT * FROM users WHERE email=? AND password=? AND status=1";
             PreparedStatement stm = connection.prepareStatement(query);
             stm.setString(1, email);
             stm.setString(2, password);

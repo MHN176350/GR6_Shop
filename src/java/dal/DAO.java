@@ -68,4 +68,13 @@ public class DAO extends DBContext {
         }
         return null;
     }
+    public void user_cont(String id, String stt){
+        try {
+            String com="Update users set status="+stt+" where user_id="+id;
+            PreparedStatement st=connection.prepareStatement(com);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

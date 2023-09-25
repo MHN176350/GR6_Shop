@@ -88,7 +88,24 @@ public class UserManageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+       DAO da=new DAO();
+       da.user_cont(request.getParameter("id"), request.getParameter("stt"));
+       int num=da.getPage();
+        int page=da.getPage()/8;
+        if(da.getPage()%8!=0){
+            page++;
+        }
+          List<User>list=new ArrayList<>();
+        if(request.getParameter("in")==null){
+      list=da.getAllU("1");
+        }
+        else {
+            list=da.getAllU(request.getParameter("in"));
+        }
+       request.setAttribute("page", page);
+       request.setAttribute("users", list);
+       request.setAttribute("entry", num);
+       request.getRequestDispatcher("UserManager.jsp").forward(request, response);
     }
 
     /** 

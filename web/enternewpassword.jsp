@@ -26,11 +26,11 @@
                         <h2 style="padding-bottom: 20px"> Reset Password </h2>
                         
                         <div class="form-group">
-                            <input type="text" class="form-input" name="npassword1" id="password" placeholder="New Password" required="">
+                            <input type="password" class="form-input" name="npassword1" id="password" placeholder="New Password" required="">
                             <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="nrepassword1" id="password" placeholder="Re-Password" required="">
+                            <input type="password" class="form-input" name="nrepassword1" id="password" placeholder="Re-Password" required="">
                             <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                         </div>
 

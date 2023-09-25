@@ -49,6 +49,8 @@ public class UpdateProfileControl extends HttpServlet {
             AccountDAO account_dao = new AccountDAO();
             account_dao.updateProfile(email, first_name, last_name, phone, address);
             request.setAttribute("status", "Update profile Successfully !");
+            String pass=request.getParameter("password");
+            session.setAttribute("USER", account_dao.login(email, pass));
             request.getRequestDispatcher("profile.jsp").forward(request, response);
         }
     }

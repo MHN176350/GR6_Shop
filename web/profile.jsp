@@ -88,7 +88,7 @@
                             <div class="card-body">
                                 <form action="updateprofile" method="post">
                                     <input type="hidden" name="email" value="${sessionScope.USER.email}" />
-
+                                  <input type="hidden" name="password" value="${sessionScope.USER.password}" />
                                     <div class="row gx-3 mb-3">
                                         <div class="col-md-6"> <label class="small mb-1" for="inputFirstName">First
                                                 name</label> <input class="form-control" id="name" name="nfname" type="text"

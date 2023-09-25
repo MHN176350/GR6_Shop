@@ -295,8 +295,7 @@ table.table .avatar {
                         <td>${u.bal}</td>
                         <td><c:if test="${u.status==1}"><span class="status text-success">&bull;</span> Active</td></c:if><c:if test="${u.status!=1}"><span class="status alert-warning">&bull;</span> Suspended</td></c:if>
                         <td>
-                            <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                            <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                           <form method="post" action="Umng"><input type="hidden" value="${u.uid}" name="id"><select onchange="this.form.submit()" name="stt"><option value="1" ${u.status == 1 ? 'selected' : ''}>Active</option><option value="0" ${u.status == 0 ? 'selected' : ''}>Deactive</option></select></form>
                         </td>
                     </tr></c:forEach>
                 </tbody>
