@@ -4,6 +4,7 @@
  */
 package dal;
 
+import Model.BlogCategory;
 import Model.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -77,4 +78,32 @@ public class DAO extends DBContext {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void addB(String title, String cont, int a_id, int cate ){
+        try {
+            String com="Insert into blog(title, main, author_id, b_cate) values(?,?,?,?)";
+            PreparedStatement st=connection.prepareStatement(com);
+            st.setString(1, title);
+            st.setString(2, cont);
+            st.setInt(3, a_id);
+            st.setInt(4, cate);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public List<BlogCategory> getAllBC(){
+        List<BlogCategory> list=new ArrayList<>();
+        try {
+            String com="SELECT * FROM swp.b_cate";
+            PreparedStatement st=connection.prepareStatement(com);
+            ResultSet rs=st.executeQuery();
+            while(rs.next()){
+                BlogCategory b=new BlogCategory(rs.getInt(1),rs.getString(2));
+                list.add(b);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+}
 }
