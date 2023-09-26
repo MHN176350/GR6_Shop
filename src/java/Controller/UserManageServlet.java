@@ -102,6 +102,14 @@ public class UserManageServlet extends HttpServlet {
         else {
             list=da.getAllU(request.getParameter("in"));
         }
+        if(request.getParameter("ser")==null){
+             list=da.getAllU("1");
+        } else {
+            list=da.Search(request.getParameter("ser"));
+        }
+        if(list.isEmpty()){
+            request.setAttribute("er", "No Result Found");
+        }
        request.setAttribute("page", page);
        request.setAttribute("users", list);
        request.setAttribute("entry", num);

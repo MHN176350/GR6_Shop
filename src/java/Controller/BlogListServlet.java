@@ -18,8 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Minh
  */
-@WebServlet(name="AddBlog", urlPatterns={"/addB"})
-public class AddBlog extends HttpServlet {
+@WebServlet(name="BlogListServlet", urlPatterns={"/blist"})
+public class BlogListServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,10 +36,10 @@ public class AddBlog extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddBlog</title>");  
+            out.println("<title>Servlet BlogListServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddBlog at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet BlogListServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,8 +57,13 @@ public class AddBlog extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         DAO d=new DAO();
-        request.setAttribute("cat", d.getAllBC());
-        request.getRequestDispatcher("AddBlog.jsp").forward(request, response);
+        
+        if(request.getParameter("cate")==null){
+            request.setAttribute("list", d.getBlist(0));
+        }else{
+            request.setAttribute("list", d.getBlist(Integer.parseInt(request.getParameter("cate"))));
+        }
+        request.getRequestDispatcher("BlogList.jsp").forward(request, response);
     } 
 
     /** 
@@ -71,25 +76,8 @@ public class AddBlog extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        DAO d=new DAO();
-          if(request.getParameter("aid").isEmpty() || request.getParameter("btit").isEmpty() || request.getParameter("cate").isEmpty() || request.getParameter("content").isEmpty()){
-         request.setAttribute("mes", "Add Failed");
-         request.setAttribute("cat", d.getAllBC());
-        request.getRequestDispatcher("AddBlog.jsp").forward(request, response);
-    }else{
-        int aid=Integer.parseInt(request.getParameter("aid"));
-        String tit=request.getParameter("btit");
-        int cate=Integer.parseInt(request.getParameter("cate"));
-        String con=request.getParameter("content");
-        String thumb=request.getParameter("thumb");
-        if(thumb.isEmpty()){
-            thumb="";
-        }
-        d.addB(tit, con, aid, cate,thumb);
-        request.setAttribute("mes", "Add Succesful");
-         request.setAttribute("cat", d.getAllBC());
-        request.getRequestDispatcher("AddBlog.jsp").forward(request, response);
-          }
+      
+            
     }
 
     /** 

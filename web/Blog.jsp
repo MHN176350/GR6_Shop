@@ -1,12 +1,12 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-                                   
+
 		<title>Electro - HTML Ecommerce Template</title>
 
  		<!-- Google font -->
@@ -27,14 +27,44 @@
 
  		<!-- Custom stlylesheet -->
  		<link type="text/css" rel="stylesheet" href="css/style.css"/>
-               <script src="https://cdn.ckeditor.com/4.23.0-lts/standard/ckeditor.js"></script>
+
  		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
  		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
  		<!--[if lt IE 9]>
  		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
  		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
  		<![endif]-->
-
+                <style>
+     .blog-author {
+      color: #999;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .blur-text {
+      color: transparent;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .blog-thumbnail {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .blog-thumbnail img {
+      max-width: 100%;
+      height: auto;
+    }
+    .blog-content {
+      text-align: justify;
+      clear: both; 
+      text-align: left;
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+</style>
     </head>
 	<body>
 		<!-- HEADER -->
@@ -186,7 +216,7 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
-
+<c:set value="${requestScope.blog}" var="b"/>
 		<!-- BREADCRUMB -->
 		<div id="breadcrumb" class="section">
 			<!-- container -->
@@ -197,7 +227,8 @@
 						<h3 class="breadcrumb-header">Regular Page</h3>
 						<ul class="breadcrumb-tree">
 							<li><a href="index.jsp">Home</a></li>
-							<li class="active">Blog Adding</li>
+                                                                                                                              <li><a href="blist">Blogs</a></li>
+							<li class="active">${b.title}</li>
 						</ul>
 					</div>
 				</div>
@@ -211,33 +242,27 @@
 		<div class="section">
 			<!-- container -->
 			<div class="container">
-                            <form method="post" action="addB">
-                                
-                            
-                                <input type="hidden" value="${sessionScope.USER.id}" name="aid">
-                                <div class="row" style="margin-bottom: 30px; margin-top: 30px">Blog Title: <input type="text" name="btit" placeholder="Enter your blog title">
+				<!-- row -->
+				<div class="row">
 				</div>
-                                <div class="row" style="margin-bottom: 30px; margin-top: 30px">Blog Type: <select name="cate">
-                                        <c:forEach items="${requestScope.cat}" var="i">
-                                            <option value="${i.id}">${i.name}</option>
-                                        </c:forEach>
-                                    </select>
-                                 </div><!-- comment -->
-                                 <div class="row" style="margin-bottom: 30px; margin-top: 30px">Blog Thumb: <input type="text" name="thumb" placeholder="Enter your blog thumbnail">
-				</div>
-                                <div style="margin-bottom: 30px; margin-top: 30px">Blog Content:</div>
-                                 <textarea name="content" placeholder="Enter Blog Content"></textarea>
-                                 <div>${requestScope.mes}</div>
-                                 <div><button type="Submit">Submit</button></div>
-				</form>
+				<!-- /row -->
 			</div>
 			<!-- /container -->
 		</div>
-                                <script>
-                               CKEDITOR.replace('content');
-                               </script>
 		<!-- /SECTION -->
+<div class="blog-container">
+    <h1>${b.title}</h1>
+<div class="blog-author">
+    <span >By ${requestScope.aut} ${b.date}</span>
+    </div>
+    <div class="blog-thumbnail">
+      <img src="${b.thumb}" alt="Thumbnail">
+    </div>
 
+    <div class="blog-content">
+           <p>${b.content}</p>
+    </div>
+  </div>
 		<!-- NEWSLETTER -->
 		<div id="newsletter" class="section">
 			<!-- container -->

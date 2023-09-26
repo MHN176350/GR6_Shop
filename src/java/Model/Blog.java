@@ -15,17 +15,19 @@ public class Blog {
    public int auth_id;
    public String cate;
    public String thumb;
+   public String date;
 
     public Blog() {
     }
 
-    public Blog(int id, String title, String content, int auth_id, String cate, String thumb) {
+    public Blog(int id, String title, String content, int auth_id, String cate, String thumb, String date) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.auth_id = auth_id;
         this.cate = cate;
         this.thumb = thumb;
+        this.date = date;
     }
 
     public int getId() {
@@ -76,9 +78,12 @@ public class Blog {
         this.thumb = thumb;
     }
 
-    @Override
-    public String toString() {
-        return "Blog{" + "id=" + id + ", title=" + title + ", content=" + content + ", auth_id=" + auth_id + ", cate=" + cate + ", thumb=" + thumb + '}';
+    public String getDate() {
+        return date;
     }
-   
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }
+  

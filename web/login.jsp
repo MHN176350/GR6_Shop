@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/css-style.css">
     </head>
-    <body class="img js-fullheight" style="background-image: url(images/3425822.jpg);">
+    <body  style="background-image: url(images/3425822.jpg);">
         <section class="ftco-section">
             <div class="container">
                 <div class="row justify-content-center">

@@ -59,8 +59,8 @@
                         <c:if test="${sessionScope.USER != null}">
                             <li><a href="profile.jsp"><i class="fa fa-user-o"></i>${sessionScope.USER.firstName} ${sessionScope.USER.lastName}  </a></li>
                             <li><a href="logout"><i class="fa fa-sign-out"></i> Log Out </a></li>
-                            </c:if>
-
+                        </c:if ><c:if test="${sessionScope.USER != null&&sessionScope.USER.isAdmin==1}">
+                        <li><a href="addB"><i class="fa fa-sign-out"></i> Add Blog </a></li></c:if>
                     </ul>
                 </div>
             </div>
@@ -211,8 +211,8 @@
                                 <img src="./img/shop01.png" alt="">
                             </div>
                             <div class="shop-body">
-                                <h3>Laptop<br>Collection</h3>
-                                <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                                <h3>Browse<br>Our Blog</h3>
+                                <a href="blist" class="cta-btn">Browse <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
