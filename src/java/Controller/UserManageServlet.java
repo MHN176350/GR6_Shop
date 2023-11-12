@@ -1,0 +1,131 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package Controller;
+
+import Model.User;
+import dal.DAO;
+import java.io.IOException;
+import java.io.PrintWriter;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Minh
+ */
+@WebServlet(name = "UserManageServlet", urlPatterns = {"/Umng"})
+public class UserManageServlet extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet UserManageServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet UserManageServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        DAO da = new DAO();
+        int num = da.getPage();
+        int page = da.getPage() / 8;
+        if (da.getPage() % 8 != 0) {
+            page++;
+        }
+        List<User> list = new ArrayList<>();
+        if (request.getParameter("in") == null) {
+            list = da.getAllU("1");
+        } else {
+            list = da.getAllU(request.getParameter("in"));
+        }
+        request.setAttribute("page", page);
+        request.setAttribute("users", list);
+        request.setAttribute("entry", num);
+        request.getRequestDispatcher("adbaccounts.jsp").forward(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        DAO da = new DAO();
+        da.user_cont(request.getParameter("id"), request.getParameter("stt"));
+        int num = da.getPage();
+        int page = da.getPage() / 8;
+        if (da.getPage() % 8 != 0) {
+            page++;
+        }
+        List<User> list = new ArrayList<>();
+        if (request.getParameter("in") == null) {
+            list = da.getAllU("1");
+        } else {
+            list = da.getAllU(request.getParameter("in"));
+        }
+        if (request.getParameter("ser") == null) {
+            list = da.getAllU("1");
+        } else {
+            list = da.Search(request.getParameter("ser"));
+        }
+        if (list.isEmpty()) {
+            request.setAttribute("er", "No Result Found");
+        }
+        request.setAttribute("ser", request.getParameter("ser"));
+        request.setAttribute("page", page);
+        request.setAttribute("users", list);
+        request.setAttribute("entry", num);
+        request.getRequestDispatcher("adbaccounts.jsp").forward(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
